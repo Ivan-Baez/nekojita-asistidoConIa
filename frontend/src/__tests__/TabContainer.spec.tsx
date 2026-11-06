@@ -24,14 +24,14 @@ describe("TabContainer", () => {
   it("renderiza la sección de Música con los singles", () => {
     render(<TabContainer activeTab="musica" />);
 
-    expect(screen.getByRole("heading", { name: "Música" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Música/ })).toBeInTheDocument();
     expect(screen.getByText("El pacto")).toBeInTheDocument();
   });
 
   it("renderiza la sección de Flyers con los afiches", () => {
     render(<TabContainer activeTab="flyers" />);
 
-    expect(screen.getByRole("heading", { name: "Flyers" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Flyers/ })).toBeInTheDocument();
     expect(screen.getAllByRole("img")).toHaveLength(6);
   });
 
@@ -39,28 +39,37 @@ describe("TabContainer", () => {
     render(<TabContainer activeTab="contacto" />);
 
     expect(
-      screen.getByRole("heading", { name: "Contacto" }),
+      screen.getByRole("heading", { name: /Contacto/ }),
     ).toBeInTheDocument();
-    expect(screen.getByLabelText("Nombre")).toBeInTheDocument();
-    expect(screen.getByLabelText("Email")).toBeInTheDocument();
-    expect(screen.getByLabelText("Mensaje")).toBeInTheDocument();
+    expect(screen.getByLabelText(/^Nombre/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^Email/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^Mensaje/)).toBeInTheDocument();
   });
 
-  it("muestra el aviso de próximamente en Fechas y Muro de Fans", () => {
+  it("renderiza la sección de Fechas con el calendario embebido", () => {
     render(<TabContainer activeTab="fechas" />);
-    expect(screen.getByRole("heading", { name: "Fechas" })).toBeInTheDocument();
-    expect(screen.getByText("Próximamente")).toBeInTheDocument();
 
-    render(<TabContainer activeTab="muro" />);
+    expect(screen.getByRole("heading", { name: /Fechas/ })).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Muro de Fans" }),
+      screen.getByTitle("Calendario de fechas de Nekojita"),
+    ).toBeInTheDocument();
+  });
+
+  it("renderiza la sección de Muro de Fans con el formulario embebido", () => {
+    render(<TabContainer activeTab="muro" />);
+
+    expect(
+      screen.getByRole("heading", { name: /Muro de Fans/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTitle("Formulario del Muro de Fans de Nekojita"),
     ).toBeInTheDocument();
   });
 
   it("renderiza la sección de Merch con los productos", () => {
     render(<TabContainer activeTab="merch" />);
 
-    expect(screen.getByRole("heading", { name: "Merch" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Merch/ })).toBeInTheDocument();
     expect(screen.getByText("Remera Nekojita")).toBeInTheDocument();
   });
 });

@@ -1,10 +1,4 @@
-import {
-  IsDateString,
-  IsOptional,
-  IsString,
-  IsUrl,
-  MinLength,
-} from 'class-validator';
+import { IsArray, IsDateString, IsOptional, IsString, MinLength } from 'class-validator';
 
 export class CreateEventDto {
   @IsString()
@@ -14,11 +8,16 @@ export class CreateEventDto {
   @IsDateString()
   eventDate: string;
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   message?: string;
 
+  @IsString()
   @IsOptional()
-  @IsUrl({ require_protocol: true, require_tld: false })
   imageUrl?: string;
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  imageUrls?: string[];
 }

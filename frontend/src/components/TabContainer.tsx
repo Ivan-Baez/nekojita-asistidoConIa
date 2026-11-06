@@ -1,6 +1,8 @@
 import type { ComponentType } from "react";
 import type { TabId } from "./Navbar";
 import ContactSection from "./sections/ContactSection";
+import DatesSection from "./sections/DatesSection";
+import FanWallSection from "./sections/FanWallSection";
 import FlyersSection from "./sections/FlyersSection";
 import HeroSection from "./sections/HeroSection";
 import MerchSection from "./sections/MerchSection";
@@ -20,8 +22,8 @@ const SECTIONS: Record<TabId, SectionEntry> = {
   musica: { title: "Música", Component: MusicSection },
   flyers: { title: "Flyers", Component: FlyersSection },
   contacto: { title: "Contacto", Component: ContactSection },
-  fechas: { title: "Fechas" },
-  muro: { title: "Muro de Fans" },
+  fechas: { title: "Fechas", Component: DatesSection },
+  muro: { title: "Muro de Fans", Component: FanWallSection },
   merch: { title: "Merch", Component: MerchSection },
 };
 

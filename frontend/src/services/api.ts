@@ -17,6 +17,13 @@ export interface LoginResponse {
   };
 }
 
+export interface FanWallMessage {
+  id: number;
+  author: string;
+  message: string;
+  createdAt: string;
+}
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
 
 export function getApiUrl(): string {
@@ -31,6 +38,33 @@ export async function fetchEvents(): Promise<CarouselEvent[]> {
   }
 
   return (await response.json()) as CarouselEvent[];
+}
+
+export async function fetchFanWallMessages(): Promise<FanWallMessage[]> {
+  const response = await fetch(`${API_URL}/fan-wall`, { cache: "no-store" });
+
+  if (!response.ok) {
+    throw new Error("No se pudieron cargar los mensajes");
+  }
+
+  return (await response.json()) as FanWallMessage[];
+}
+
+export async function createFanWallMessageRequest(message: {
+  author: string;
+  message: string;
+}): Promise<FanWallMessage> {
+  const response = await fetch(`${API_URL}/fan-wall`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(message),
+  });
+
+  if (!response.ok) {
+    throw new Error("No se pudo pegar el mensaje en la pared");
+  }
+
+  return (await response.json()) as FanWallMessage;
 }
 
 export async function loginRequest(

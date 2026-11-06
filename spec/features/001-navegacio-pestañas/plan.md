@@ -8,4 +8,4 @@ Crear un componente cliente en Next.js (`Navbar.tsx`) que controle el estado de 
 - `src/components/TabContainer.tsx`: Renderizador condicional de la sección activa.
 - `src/app/page.tsx`: Página principal que integra el Navbar y las 7 secciones.
 - Barra superior con indicador activo en rojo punk (`#ff003c`).
-- Uso obligatorio de la imagen `/logo2transparente.png` ubicada en la carpeta `public/` de Next.js como logotipo principal en la barra de navegación.
+- Uso obligatorio de la imagen `/transparentelogo1.png` ubicada en la carpeta `public/` de Next.js como logotipo principal en la barra de navegación.

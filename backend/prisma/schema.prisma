@@ -29,3 +29,10 @@ model CarouselEvent {
   createdBy   User     @relation(fields: [createdById], references: [id])
   createdAt   DateTime @default(now())
 }
+
+model FanWallMessage {
+  id        Int      @id @default(autoincrement())
+  author    String
+  message   String
+  createdAt DateTime @default(now())
+}
