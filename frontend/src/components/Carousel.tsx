@@ -71,7 +71,7 @@ function extractAllImages(event: any): string[] {
         imagesSet.add(raw);
       }
     } else if (raw.includes(",")) {
-      raw.split(",").forEach((s) => {
+      raw.split(",").forEach((s: string) => {
         if (s.trim()) imagesSet.add(s.trim());
       });
     } else {
